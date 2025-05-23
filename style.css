@@ -1,0 +1,75 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+}
+
+aside {
+  width: 20rem;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  background-color: #F4F4F4;
+}
+
+header {
+  position: fixed;
+  left: 20rem;
+  right: 0;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+main {
+  margin-left: 20rem; 
+  margin-top: 4rem;   
+  padding: 1rem;
+  flex: 1;
+  overflow-y: auto;
+}
+
+button{
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.input{
+  display: flex;
+  gap: 1rem;
+}
+
+#filtroForm{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#produtosContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; 
+  padding: 16px;
+  width: 200px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid red;
+  padding: 12px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
