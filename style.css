@@ -6,6 +6,7 @@
 
 body {
   display: flex;
+  font-family: "Ancizar Sans", sans-serif;;
 }
 
 aside {
@@ -15,17 +16,20 @@ aside {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: 1rem;
   background-color: #F4F4F4;
 }
 
 header {
   position: fixed;
+  padding-inline: 1rem;
   left: 20rem;
   right: 0;
   height: 4rem;
   display: flex;
   align-items: center;
+  background-color: #e0f7fa;
   justify-content: center;
 }
 
@@ -39,6 +43,7 @@ main {
 
 button{
   padding: 0.5rem 1rem;
+  width: 16rem;
   border: none;
   background-color: #007bff;
   color: white;
@@ -65,11 +70,40 @@ button{
   width: 200px;
 }
 
-.card {
+#produtosContainer div{
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 10px;
+  justify-content: center;
+}
+
+#produtosContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  padding: 20px;
+  width: 100%;
+}
+
+.tituloSection {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.cardProduto {
   display: flex;
   flex-direction: column;
-  border: 1px solid red;
-  padding: 12px;
-  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 16px;
+  width: 300px;
   background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.cardProduto:hover {
+  background-color: #e0f7fa; 
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3); 
 }
