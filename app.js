@@ -28,12 +28,14 @@ const produtosContainer = document.getElementById("produtosContainer")
 
 
 sections.forEach(function(section) {
-  produtosContainer.innerHTML += `<h2 class="titulo-section">${section}</h2>`
+  produtosContainer.innerHTML += `<h2 class="tituloSection">${section}</h2>`
+
+  let cardsHTML = '<div class="cardsContainer">'
 
   produtos.forEach(function(produto) {
     if (produto.categoria === section){
-      produtosContainer.innerHTML += `
-      <div class="card-produto">
+      cardsHTML += `
+      <div class="cardProduto">
         <h3>${produto.nome}</h3>
         <p>Preço: R$ ${produto.preco.toFixed(2)}</p>
         <p>Categoria: ${produto.categoria}</p>
@@ -41,4 +43,8 @@ sections.forEach(function(section) {
       </div>`
     }
   })
+
+  cardsHTML += '</div>' 
+
+  produtosContainer.innerHTML += cardsHTML
 })
