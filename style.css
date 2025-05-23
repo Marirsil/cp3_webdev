@@ -51,10 +51,6 @@ button{
   gap: 1rem;
 }
 
-#listaProdutos{
-  
-}
-
 #filtroForm{
   display: flex;
   flex-direction: column;
