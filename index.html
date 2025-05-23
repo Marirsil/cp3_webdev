@@ -7,6 +7,34 @@
   <title>Checkpoint 3</title>
 </head>
 <body>
+  <h1>Catálogo de produtos</h1>
+
+  <div id="listaProdutos">
+    <form id="filtroForm">
+      <label for="filter">Filtrar produtos:</label>
+      <select id="categoria">
+        <option value="todos">Todos</option>
+        <option value="vinhoT">Vinho Tinto</option>
+        <option value="vinhoB">Vinho Branco</option>
+        <option value="vinhoR">Vinho Rosé</option>
+      </select>
+
+      <label for="">Ordenar por:</label>
+      <select id="ordenar">
+        <option value="precoCrescente">Preço crescente</option>
+        <option value="precoDecrescente">Preço decrescente</option>
+      </select>
+
+      <button type="submit">Filtrar</button>
+    </form>
+
+    <label for="exibirTodos">Exibir todos</label>
+    <input type="checkbox" id="exibirTodos" checked>
+
+    <button id="listarTodos">Listar Todos</button>
+  </div>
+
+  <div id="produtosContainer"></div>
   <script src="app.js"></script>
 </body>
 </html>
