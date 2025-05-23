@@ -3,38 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="style.css">
   <title>Checkpoint 3</title>
 </head>
 <body>
-  <h1>Catálogo de produtos</h1>
+  <header>
+    <h1>Catálogo de produtos</h1>
+  </header>
 
-  <div id="listaProdutos">
+  <aside id="listaProdutos">
     <form id="filtroForm">
-      <label for="filter">Filtrar produtos:</label>
-      <select id="categoria">
-        <option value="todos">Todos</option>
-        <option value="vinhoT">Vinho Tinto</option>
-        <option value="vinhoB">Vinho Branco</option>
-        <option value="vinhoR">Vinho Rosé</option>
-      </select>
+      <div class="input">
+        <label class="label" for="categoria">Filtrar produtos:</label>
+        <select class="label" id="categoria">
+          <option value="todos">Todos</option>
+          <option value="vinhoT">Vinho Tinto</option>
+          <option value="vinhoB">Vinho Branco</option>
+          <option value="vinhoR">Vinho Rosé</option>
+        </select>
+      </div>
 
-      <label for="">Ordenar por:</label>
-      <select id="ordenar">
-        <option value="precoCrescente">Preço crescente</option>
-        <option value="precoDecrescente">Preço decrescente</option>
-      </select>
+      <div class="input">
+        <label for="ordenar">Ordenar por:</label>
+        <select id="ordenar">
+          <option value="precoCrescente">Preço crescente</option>
+          <option value="precoDecrescente">Preço decrescente</option>
+        </select>
+      </div>
+
+      <div class="input">
+        <label for="exibirTodos">Exibir todos</label>
+        <input type="checkbox" id="exibirTodos" checked>
+      </div>
 
       <button type="submit">Filtrar</button>
     </form>
 
-    <label for="exibirTodos">Exibir todos</label>
-    <input type="checkbox" id="exibirTodos" checked>
-
     <button id="listarTodos">Listar Todos</button>
-  </div>
+  </aside>
+  <main>
+    <div id="produtosContainer"><h1>oi AAAAA</h1></div>
+  </main>
 
-  <div id="produtosContainer"></div>
   <script src="app.js"></script>
 </body>
 </html>
