@@ -26,25 +26,35 @@ const btnFiltrar = document.getElementById("btnFiltrar")
 const produtosContainer = document.getElementById("produtosContainer")
 // const apenasDisponiveis = document.getElementById("apenasDisponiveis").checked;
 
+function exibirProdutos(lista){
+  produtosContainer.innerHTML = ""
 
-sections.forEach(function(section) {
-  produtosContainer.innerHTML += `<h2 class="tituloSection">${section}</h2>`
+  const categoriasUnicas = [...new Set(lista.map(produto => produto.categoria))]
+  
+  categoriasUnicas.forEach(function(section) {
+    produtosContainer.innerHTML += `<h2 class="tituloSection">${section}</h2>`
 
-  let cardsHTML = '<div class="cardsContainer">'
+    let cardsHTML = '<div class="cardsContainer">'
 
-  produtos.forEach(function(produto) {
-    if (produto.categoria === section){
-      cardsHTML += `
-      <div class="cardProduto">
-        <h3>${produto.nome}</h3>
-        <p>Preço: R$ ${produto.preco.toFixed(2)}</p>
-        <p>Categoria: ${produto.categoria}</p>
-        <p>Disponibilidade: ${produto.disponibilidade ? "Sim" : "Não"}</p>
-      </div>`
-    }
+    lista.forEach(function(produto) {
+      if (produto.categoria === section){
+        cardsHTML += `
+        <div class="cardProduto">
+          <h3>${produto.nome}</h3>
+          <p>Preço: R$ ${produto.preco.toFixed(2)}</p>
+          <p>Categoria: ${produto.categoria}</p>
+          <p>Disponibilidade: ${produto.disponibilidade ? "Sim" : "Não"}</p>
+        </div>`
+      }
+    })
+
+    cardsHTML += '</div>' 
+
+    produtosContainer.innerHTML += cardsHTML
   })
+}
+exibirProdutos(produtos)
 
-  cardsHTML += '</div>' 
-
-  produtosContainer.innerHTML += cardsHTML
+btnListarTodos.addEventListener("click", function(){
+  exibirProdutos(produtos)
 })
