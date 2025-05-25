@@ -16,76 +16,99 @@ const produtos = [
 ];
 
 const sections = ['Vinho tinto', 'Vinho branco', 'Vinho rosé'];
-const listaProdutos = document.getElementById("listaProdutos")
-const filtroForm = document.getElementById("filtroForm")
-const categorias = document.getElementById("categoria")
-const ordenar = document.getElementById("ordenar")
-const exibirTodos = document.getElementById("exibirTodos")
-const btnListarTodos = document.getElementById("btnListarTodos")
-const btnFiltrar = document.getElementById("btnFiltrar")
-const produtosContainer = document.getElementById("produtosContainer")
-// const apenasDisponiveis = document.getElementById("apenasDisponiveis").checked;
 
-function exibirProdutos(lista){
-  produtosContainer.innerHTML = ""
+const filtroForm = document.getElementById("filtroForm");
+const categorias = document.getElementById("categoria");
+const ordenar = document.getElementById("ordenar");
+const exibirTodos = document.getElementById("exibirTodos");
+const btnListarTodos = document.getElementById("btnListarTodos");
+const produtosContainer = document.getElementById("produtosContainer");
 
-  const categoriasUnicas = [...new Set(lista.map(produto => produto.categoria))]
-  
-  categoriasUnicas.forEach(function(section) {
-    produtosContainer.innerHTML += `<h2 class="tituloSection">${section}</h2>`
+function exibirProdutos(lista) {
+  produtosContainer.innerHTML = "";
 
-    let cardsHTML = '<div class="cardsContainer">'
+  sections.forEach(function(section) {
+    const produtosDaSecao = lista.filter(function(produto) {
+      return produto.categoria === section;
+    });
 
-    lista.forEach(function(produto) {
-      if (produto.categoria === section){
+    if (produtosDaSecao.length > 0) {
+      produtosContainer.innerHTML += `<h2 class="tituloSection">${section}</h2>`;
+      let cardsHTML = '<div class="cardsContainer">';
+
+      produtosDaSecao.forEach(function(produto) {
         cardsHTML += `
-        <div class="cardProduto">
-          <h3>${produto.nome}</h3>
-          <p>Preço: R$ ${produto.preco.toFixed(2)}</p>
-          <p>Categoria: ${produto.categoria}</p>
-          <p>Disponibilidade: ${produto.disponibilidade ? "Sim" : "Não"}</p>
-        </div>`
-      }
-    })
+          <div class="cardProduto">
+            <h3>${produto.nome}</h3>
+            <p>Preço: R$ ${produto.preco.toFixed(2)}</p>
+            <p>Categoria: ${produto.categoria}</p>
+            <p>Disponibilidade: ${produto.disponibilidade ? "Sim" : "Não"}</p>
+          </div>
+        `;
+      });
 
-    cardsHTML += '</div>' 
+      cardsHTML += '</div>';
+      produtosContainer.innerHTML += cardsHTML;
+    }
+  });
 
-    produtosContainer.innerHTML += cardsHTML
-  })
+  adicionarHoverNosCards(); 
 }
-exibirProdutos(produtos)
 
-btnListarTodos.addEventListener("click", function(){
-  exibirProdutos(produtos)
-})
-btnFiltrar.addEventListener("click", event => {
+function adicionarHoverNosCards() {
+  var cards = document.querySelectorAll('.cardProduto');
+
+  cards.forEach(function(card) {
+    card.addEventListener('mouseover', function() {
+      card.style.backgroundColor = '#e0f7fa';
+      card.style.boxShadow = '0 4px 12px rgba(0,0,0,0.3)';
+    });
+
+    card.addEventListener('mouseout', function() {
+      card.style.backgroundColor = '';
+      card.style.boxShadow = '';
+    });
+  });
+}
+
+exibirProdutos(produtos);
+
+filtroForm.addEventListener("submit", function(event) {
   event.preventDefault();
 
   let listaFiltrada = produtos;
 
-  const categoriaSelecionada = categorias.value;
-  const ordenarPor = ordenar.value;
-  const mostrarIndisponiveis = exibirTodos.checked;
+  if (categorias.value !== "todos") {
+    const categoriaSelecionada = categorias.value === "vinhoT" ? "Vinho tinto" :categorias.value === "vinhoB" ? "Vinho branco" : categorias.value === "vinhoR" ? "Vinho rosé" : "";
 
-  if (categoriaSelecionada !== "todos") {
-    if (categoriaSelecionada === "vinhoT") {
-      listaFiltrada = listaFiltrada.filter(p => p.categoria === "Vinho tinto");
-    } else if (categoriaSelecionada === "vinhoB") {
-      listaFiltrada = listaFiltrada.filter(p => p.categoria === "Vinho branco");
-    } else if (categoriaSelecionada === "vinhoR") {
-      listaFiltrada = listaFiltrada.filter(p => p.categoria === "Vinho rosé");
-    }
+    listaFiltrada = listaFiltrada.filter(function(produto) {
+      return produto.categoria === categoriaSelecionada;
+    });
   }
 
-  if (!mostrarIndisponiveis) {
-    listaFiltrada = listaFiltrada.filter(p => p.disponibilidade);
+  if (!exibirTodos.checked) {
+    listaFiltrada = listaFiltrada.filter(function(produto) {
+      return produto.disponibilidade === true;
+    });
   }
 
-  if (ordenarPor === "precoCrescente") {
-    listaFiltrada.sort((a, b) => a.preco - b.preco);
-  } else if (ordenarPor === "precoDecrescente") {
-    listaFiltrada.sort((a, b) => b.preco - a.preco);
+  if (ordenar.value === "precoCrescente") {
+    listaFiltrada.sort(function(a, b) {
+      return a.preco - b.preco;
+    });
+  } else if (ordenar.value === "precoDecrescente") {
+    listaFiltrada.sort(function(a, b) {
+      return b.preco - a.preco;
+    });
   }
 
   exibirProdutos(listaFiltrada);
+});
+
+btnListarTodos.addEventListener("click", function() {
+  categorias.value = "todos";
+  ordenar.value = "precoCrescente";
+  exibirTodos.checked = true;
+
+  exibirProdutos(produtos);
 });
