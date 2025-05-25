@@ -58,3 +58,34 @@ exibirProdutos(produtos)
 btnListarTodos.addEventListener("click", function(){
   exibirProdutos(produtos)
 })
+btnFiltrar.addEventListener("click", event => {
+  event.preventDefault();
+
+  let listaFiltrada = produtos;
+
+  const categoriaSelecionada = categorias.value;
+  const ordenarPor = ordenar.value;
+  const mostrarIndisponiveis = exibirTodos.checked;
+
+  if (categoriaSelecionada !== "todos") {
+    if (categoriaSelecionada === "vinhoT") {
+      listaFiltrada = listaFiltrada.filter(p => p.categoria === "Vinho tinto");
+    } else if (categoriaSelecionada === "vinhoB") {
+      listaFiltrada = listaFiltrada.filter(p => p.categoria === "Vinho branco");
+    } else if (categoriaSelecionada === "vinhoR") {
+      listaFiltrada = listaFiltrada.filter(p => p.categoria === "Vinho rosé");
+    }
+  }
+
+  if (!mostrarIndisponiveis) {
+    listaFiltrada = listaFiltrada.filter(p => p.disponibilidade);
+  }
+
+  if (ordenarPor === "precoCrescente") {
+    listaFiltrada.sort((a, b) => a.preco - b.preco);
+  } else if (ordenarPor === "precoDecrescente") {
+    listaFiltrada.sort((a, b) => b.preco - a.preco);
+  }
+
+  exibirProdutos(listaFiltrada);
+});
