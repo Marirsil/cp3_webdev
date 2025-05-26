@@ -86,7 +86,7 @@ filtroForm.addEventListener("submit", function(event) {
     });
   }
 
-  if (!exibirTodos.checked) {
+  if (exibirTodos.checked) {
     listaFiltrada = listaFiltrada.filter(function(produto) {
       return produto.disponibilidade === true;
     });
