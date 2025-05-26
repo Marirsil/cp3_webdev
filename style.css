@@ -103,7 +103,3 @@ button{
   border-radius: 8px;
 }
 
-.cardProduto:hover {
-  background-color: #e0f7fa; 
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3); 
-}

@@ -86,12 +86,12 @@ filtroForm.addEventListener("submit", function(event) {
     });
   }
 
-  if (!exibirTodos.checked) {
+  if (exibirTodos.checked) {
     listaFiltrada = listaFiltrada.filter(function(produto) {
       return produto.disponibilidade === true;
     });
   }
-
+  
   if (ordenar.value === "precoCrescente") {
     listaFiltrada.sort(function(a, b) {
       return a.preco - b.preco;
