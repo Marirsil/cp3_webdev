@@ -91,7 +91,7 @@ filtroForm.addEventListener("submit", function(event) {
       return produto.disponibilidade === true;
     });
   }
-
+  
   if (ordenar.value === "precoCrescente") {
     listaFiltrada.sort(function(a, b) {
       return a.preco - b.preco;
